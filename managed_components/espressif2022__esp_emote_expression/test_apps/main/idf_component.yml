@@ -1,0 +1,32 @@
+## IDF Component Manager Manifest File
+dependencies:
+  espressif/esp-box:
+    version: "*"
+    rules:
+      - if: "target in [esp32s3]"
+      - if: "idf_version <6.0"
+
+  espressif/esp_vocat:
+    version: "^1.1.0"
+    rules:
+      - if: "target in [esp32s3]"
+      - if: "idf_version >=6.0"
+
+  espressif/esp32_c3_lcdkit:
+    version: "*"
+    rules:
+      - if: "target in [esp32c3]"
+
+  espressif/esp_wrover_kit:
+    version: "*"
+    rules:
+      - if: "target in [esp32]"
+
+  espressif/esp32_p4_function_ev_board_noglib:
+    version: "*"
+    rules:
+      - if: "target in [esp32p4]"
+
+  espressif2022/esp_emote_expression:
+    version: "*"
+    override_path: "../../"

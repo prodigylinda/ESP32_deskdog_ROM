@@ -1,0 +1,127 @@
+<!--
+SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <title>ESP-Hi</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js"></script>
+  <script src="/nipplejs.min.js"></script>
+</head>
+
+<body>
+  <div class="tabs">
+    <div class="tab" data-tab="custom">Combo</div>
+    <div class="tab active" data-tab="control">Control</div>
+    <div class="tab" data-tab="config">Calibration</div>
+  </div>
+  <div class="content">
+    <div id="control" class="panel">
+      <div class="controls">
+        <div class="buttons-container" id="action-buttons"><span>Preset Actions</span></div>
+        <div class="joystick-container" id="joystick">
+          <div class="joystick-hint">Try holding and dragging here</div>
+          <div class="joystick-hint error" id="control-error"></div>
+        </div>
+      </div>
+    </div>
+    <div id="config" class="panel" style="display:none;">
+      <div class="config-area">
+        <div id="calibration-intro">
+          <h2>Servo Calibration Instructions</h2>
+          <p>After ESP-Hi assembly, the servo baseline positions may not be on the same plane. In this state, ESP-Hi often cannot move properly and needs calibration.</p>
+          <p>Calibration steps:</p>
+          <ol>
+            <li>Click "Enter Servo Calibration Mode", ESP-Hi will try to level all four legs.</li>
+            <li>Click the four servo buttons on the screen to fine-tune the angles of the four servos until all four legs are in line with the body. If you find it impossible to level, please unscrew the screws between the legs and the servos, adjust the angle and screw back.</li>
+            <li>Click the "Exit Calibration Mode" button, ESP-Hi will exit calibration mode.</li>
+          </ol>
+          <img src="calibration.png" alt="calibration" style="width: 100%;" />
+          <p><b>Do not manually bend the servos, otherwise the servos may be damaged!</b></p>
+          <div class="calibration-buttons">
+            <button id="start-calibration" class="calibration-button">Enter Servo Calibration Mode</button>
+          </div>
+        </div>
+        <div id="calibration-interface" style="display:none;">
+          <div class="vehicle">
+            <div class="servo fl" data-pos="fl"><span class="label">Front Left</span><span class="value">0</span></div>
+            <div class="servo fr" data-pos="fr"><span class="label">Front Right</span><span class="value">0</span></div>
+            <div class="servo bl" data-pos="bl"><span class="label">Back Left</span><span class="value">0</span></div>
+            <div class="servo br" data-pos="br"><span class="label">Back Right</span><span class="value">0</span></div>
+            <div class="header"> ESP-Hi </div>
+          </div>
+          <div class="adjust">
+            <button id="minus">-</button>
+            <code id="value-display">0</code>
+            <button id="plus">+</button>
+          </div>
+          <div class="calibration-buttons">
+            <button id="exit-calibration" class="calibration-button">Exit Servo Calibration Mode</button>
+          </div>
+          <div class="error" id="config-error"></div>
+        </div>
+      </div>
+    </div>
+    <div id="custom" class="panel" style="display:none;">
+      <div class="custom-area">
+        <h2>Custom Action Sequence</h2>
+        <div class="custom-controls">
+          <div class="action-selector">
+            <div class="selector-group">
+              <label>Action:</label>
+              <select id="action-select">
+                <option value="">Select action...</option>
+                <optgroup label="Preset Actions">
+                  <option value="1">Lie Down</option>
+                  <option value="2">Bow</option>
+                  <option value="3">Lean Back</option>
+                  <option value="4">Wiggle</option>
+                  <option value="5">Rock</option>
+                  <option value="6">Sway</option>
+                  <option value="7">Shake</option>
+                  <option value="8">Poke</option>
+                  <option value="9">Kick</option>
+                  <option value="10">Jump Forward</option>
+                  <option value="11">Jump Back</option>
+                  <option value="12">Retract</option>
+                </optgroup>
+                <optgroup label="Basic Movements">
+                  <option value="F">Forward</option>
+                  <option value="B">Backward</option>
+                  <option value="L">Turn Left</option>
+                  <option value="R">Turn Right</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="delay-group">
+              <label>Delay:</label>
+              <input type="number" id="delay-input" min="0" max="10" step="0.1" value="1">
+              <label>seconds</label>
+            </div>
+            <button id="add-action">Add</button>
+          </div>
+          <div class="action-sequence" id="action-sequence">
+            <div class="sequence-list"></div>
+          </div>
+          <div class="custom-buttons">
+            <button id="save-sequence" class="custom-button">Save</button>
+            <button id="play-sequence" class="custom-button">Execute</button>
+          </div>
+          <div class="error" id="custom-error"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

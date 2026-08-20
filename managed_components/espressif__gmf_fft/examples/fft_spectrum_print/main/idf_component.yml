@@ -1,0 +1,3 @@
+dependencies:
+  espressif/gmf_fft:
+    version: '*'

@@ -1,0 +1,9 @@
+dependencies:
+  cmake_utilities: 0.*
+  idf: '>=4.4'
+description: ESP LCD NV3023(SPI)
+repository: https://github.com/MakerM0/esp_lcd_nv3023.git
+repository_info:
+  commit_sha: 15dae9531b4fc031bcc12dea1ddfe02517ca7711
+url: https://github.com/MakerM0/esp_lcd_nv3023.git
+version: 1.0.1

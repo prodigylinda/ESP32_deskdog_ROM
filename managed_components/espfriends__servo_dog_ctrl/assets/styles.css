@@ -1,0 +1,411 @@
+/*
+SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+SPDX-License-Identifier: Apache-2.0
+*/
+
+/* 基础样式 */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 通用按钮样式 */
+.button-base {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  background: #ddd;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button-base:hover {
+  background: #ccc;
+}
+
+.button-base:disabled {
+  background: #eee;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* 校准按钮样式 */
+.calibration-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  background: #ddd;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.calibration-button:hover {
+  background: #ccc;
+}
+
+.calibration-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 5rem;
+}
+
+/* 自定义动作按钮样式 */
+.custom-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  background: #ddd;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 50px;
+}
+
+.custom-button:hover {
+  background: #ccc;
+}
+
+.custom-button:disabled {
+  background: #eee;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.custom-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 调整按钮样式 */
+.adjust button {
+  margin: 0;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  background: #ddd;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 50px;
+}
+
+.adjust button:hover {
+  background: #ccc;
+}
+
+#value-display {
+  font-size: 1.2rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Tab样式 */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tab.active {
+  border-bottom: 2px solid #007bff;
+  color: #007bff;
+}
+
+.content {
+  padding: 1rem;
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 控制面板样式 */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 60px);
+  position: relative;
+}
+
+.joystick-container {
+  width: 85vw;
+  height: 85vh;
+  border: 2px dashed #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.joystick-hint {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.buttons-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.buttons-container .button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.buttons-container .button-row {
+  display: flex;
+  gap: 8px;
+}
+
+.buttons-container button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 60px;
+}
+
+/* 校准面板样式 */
+.config-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vehicle {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  background: #eee;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.servo {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.servo.active {
+  background: #007bff;
+  color: #fff;
+}
+
+.servo.fl { left: -30px; top: 30px; }
+.servo.bl { left: -30px; bottom: 20px; }
+.servo.fr { right: -30px; top: 30px; }
+.servo.br { right: -30px; bottom: 20px; }
+
+.header {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 30px;
+  width: 160px;
+  background: #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.adjust {
+  margin: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* 自定义动作面板样式 */
+.custom-area {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.custom-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.action-selector {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.selector-group {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.delay-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-selector label {
+  white-space: nowrap;
+  color: #666;
+}
+
+.action-selector select,
+.action-selector input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.action-selector select {
+  flex: 1;
+  min-width: 0;
+}
+
+.action-selector input {
+  width: 60px;
+  text-align: center;
+}
+
+.action-sequence {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+  min-height: 100px;
+}
+
+.sequence-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sequence-item {
+  background: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sequence-item .remove {
+  color: #dc3545;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 错误提示样式 */
+.error {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* 响应式样式 */
+@media screen and (max-width: 900px) {
+  .buttons-container .button-container {
+    flex-direction: column;
+  }
+  .buttons-container .button-row {
+    justify-content: center;
+  }
+  .buttons-container button {
+    flex: 0 0 calc(25% - 8px);
+    min-width: 45px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .action-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .selector-group {
+    min-width: 0;
+  }
+
+  .delay-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .delay-group input {
+    flex: 1;
+    width: auto;
+  }
+
+  .action-selector button {
+    width: 100%;
+  }
+}
+
+.action-selector button {
+  padding: 8px 20px;
+  background: #ddd;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.action-selector button:hover {
+  background: #ccc;
+} 

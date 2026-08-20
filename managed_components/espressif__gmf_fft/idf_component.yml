@@ -1,0 +1,14 @@
+description: Espressif Fast Fourier Transform
+documentation: https://github.com/espressif/esp-gmf/blob/main/packages/gmf_fft/README.md
+issues: https://github.com/espressif/esp-gmf/issues
+repository: git://github.com/espressif/esp-gmf.git
+repository_info:
+  commit_sha: 91bf93062ff5d1c478e2baa530084c944fcba3de
+  path: ./packages/gmf_fft
+tags:
+- fft
+- ifft
+- gmf
+- signal-processing
+url: https://github.com/espressif/esp-gmf/tree/main/packages/gmf_fft
+version: 1.0.0

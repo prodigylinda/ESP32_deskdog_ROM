@@ -1,0 +1,46 @@
+menu "Servo Dog Configuration"
+
+    menu "Servo Neutral Angle Configuration"
+        config FL_ANGLE_NEUTRAL
+            int "Front Left Servo Neutral Angle"
+            default 70
+            help
+            Neutral angle value for the Front Left Servo.
+
+        config FR_ANGLE_NEUTRAL
+            int "Front Right Servo Neutral Angle"
+            default 110
+            help
+            Neutral angle value for the Front Right Servo.
+
+        config BL_ANGLE_NEUTRAL
+            int "Back Left Servo Neutral Angle"
+            default 110
+            help
+            Neutral angle value for the Back Left Servo.
+
+        config BR_ANGLE_NEUTRAL
+            int "Back Right Servo Neutral Angle"
+            default 70
+            help
+            Neutral angle value for the Back Right Servo.
+    endmenu
+
+    menu "Web Control"
+
+        config ESP_HI_WEB_CONTROL_ENABLED
+            bool "Enable ESP-HI Web Control"
+            default y
+            help
+            Enable ESP-HI Web Control.
+
+        config ESP_HI_MDNS_HOSTNAME
+            string "MDNS Hostname"
+            depends on ESP_HI_WEB_CONTROL_ENABLED
+            default "esp-hi"
+            help
+            MDNS hostname for the ESP. Visit http://[MDNS Hostname].local to access the web control.
+
+    endmenu
+
+endmenu

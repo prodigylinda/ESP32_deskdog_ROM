@@ -1,0 +1,11 @@
+dependencies:
+  espressif/mdns:
+    version: ^1.8.2
+  espressif/servo: ^1.0.0
+  idf:
+    version: '>=5.0.0'
+description: The "servo dog" controller component for ESP-Hi, with WebUI
+issues: https://gitee.com/esp-friends/esp-hi/issues
+repository: https://gitee.com/esp-friends/esp-hi.git
+url: https://gitee.com/esp-friends/esp-hi/tree/master/components/servo_dog_ctrl
+version: 0.2.0

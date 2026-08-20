@@ -1,0 +1,16 @@
+dependencies:
+  espressif/i2c_bus:
+    public: true
+    version: ^1.0.0
+  idf:
+    version: '>=4.4'
+description: M5Stack M5IOE1 Library
+license: MIT
+maintainers:
+- M5Stack
+repository: https://github.com/m5stack/M5IOE1.git
+tags:
+- m5stack
+- IO-Expander
+url: https://github.com/m5stack/M5IOE1
+version: 1.0.9

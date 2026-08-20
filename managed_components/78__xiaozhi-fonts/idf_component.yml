@@ -1,0 +1,16 @@
+dependencies:
+  idf: '>=5.5.2'
+  lvgl/lvgl: ~9.5.0
+description: Noto text, emoji, and Material Symbols assets for XiaoZhi
+files:
+  exclude:
+  - .git/**/*
+  - dist/**/*
+  - source/**/*
+  - '**/__pycache__/**/*'
+license: Apache-2.0
+repository: https://github.com/78/noto-fonts
+repository_info:
+  commit_sha: d45dbc64052d57048f20ab1770074172ce9eb53b
+url: https://github.com/78/noto-fonts
+version: 2.0.0

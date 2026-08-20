@@ -1,0 +1,127 @@
+<!--
+SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <title>ESP-Hi</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js"></script>
+  <script src="/nipplejs.min.js"></script>
+</head>
+
+<body>
+  <div class="tabs">
+    <div class="tab" data-tab="custom">自定义动作</div>
+    <div class="tab active" data-tab="control">控制</div>
+    <div class="tab" data-tab="config">舵机校准</div>
+  </div>
+  <div class="content">
+    <div id="control" class="panel">
+      <div class="controls">
+        <div class="buttons-container" id="action-buttons"><span>预置动作</span></div>
+        <div class="joystick-container" id="joystick">
+          <div class="joystick-hint">试试按住这里并拖动</div>
+          <div class="joystick-hint error" id="control-error"></div>
+        </div>
+      </div>
+    </div>
+    <div id="config" class="panel" style="display:none;">
+      <div class="config-area">
+        <div id="calibration-intro">
+          <h2>舵机校准说明</h2>
+          <p>ESP-Hi 组装完成后，舵机的基准位置可能不在同一平面上，这种状态下 ESP-Hi 常常无法正常运动，需要校准。</p>
+          <p>校准步骤：</p>
+          <ol>
+            <li>点击"进入舵机校准模式"，ESP-Hi 会尝试将四条腿放平。</li>
+            <li>点击屏幕上的四个舵机按钮微调四个舵机的角度，直到四条腿都与身体在同一条直线上。如果发现无法调平，请拧下腿与舵机间的螺丝，调整角度后拧回。</li>
+            <li>点击"退出校准模式"按钮，ESP-Hi 会退出校准模式。</li>
+          </ol>
+          <img src="calibration.png" alt="calibration" style="width: 100%;" />
+          <p>不要徒手掰动舵机，否则可能会损坏舵机！</p>
+          <div class="calibration-buttons">
+            <button id="start-calibration" class="calibration-button">进入舵机校准模式</button>
+          </div>
+        </div>
+        <div id="calibration-interface" style="display:none;">
+          <div class="vehicle">
+            <div class="servo fl" data-pos="fl"><span class="label">前左</span><span class="value">0</span></div>
+            <div class="servo fr" data-pos="fr"><span class="label">前右</span><span class="value">0</span></div>
+            <div class="servo bl" data-pos="bl"><span class="label">后左</span><span class="value">0</span></div>
+            <div class="servo br" data-pos="br"><span class="label">后右</span><span class="value">0</span></div>
+            <div class="header"> ESP-Hi </div>
+          </div>
+          <div class="adjust">
+            <button id="minus">-</button>
+            <code id="value-display">0</code>
+            <button id="plus">+</button>
+          </div>
+          <div class="calibration-buttons">
+            <button id="exit-calibration" class="calibration-button">退出舵机校准模式</button>
+          </div>
+          <div class="error" id="config-error"></div>
+        </div>
+      </div>
+    </div>
+    <div id="custom" class="panel" style="display:none;">
+      <div class="custom-area">
+        <h2>自定义动作组合</h2>
+        <div class="custom-controls">
+          <div class="action-selector">
+            <div class="selector-group">
+              <label>动作：</label>
+              <select id="action-select">
+                <option value="">选择动作...</option>
+                <optgroup label="预置动作">
+                  <option value="1">趴下</option>
+                  <option value="2">鞠躬</option>
+                  <option value="3">后仰</option>
+                  <option value="4">摇摆</option>
+                  <option value="5">前后</option>
+                  <option value="6">左右</option>
+                  <option value="7">握手</option>
+                  <option value="8">戳戳</option>
+                  <option value="9">抖腿</option>
+                  <option value="10">前跳</option>
+                  <option value="11">后跳</option>
+                  <option value="12">收腿</option>
+                </optgroup>
+                <optgroup label="基本动作">
+                  <option value="F">前进</option>
+                  <option value="B">后退</option>
+                  <option value="L">左转</option>
+                  <option value="R">右转</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="delay-group">
+              <label>延迟：</label>
+              <input type="number" id="delay-input" min="0" max="10" step="0.1" value="1">
+              <label>秒</label>
+            </div>
+            <button id="add-action">添加</button>
+          </div>
+          <div class="action-sequence" id="action-sequence">
+            <div class="sequence-list"></div>
+          </div>
+          <div class="custom-buttons">
+            <button id="save-sequence" class="custom-button">保存动作</button>
+            <button id="play-sequence" class="custom-button">执行动作</button>
+          </div>
+          <div class="error" id="custom-error"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
