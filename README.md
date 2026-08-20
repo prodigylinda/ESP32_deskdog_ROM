@@ -4,7 +4,7 @@
 
 **ESP32 DeskDog ROM** is a customized ESP32 firmware project based on the original **esp_hi** open-source project.
 
-This project is developed for an ESP32-based desktop robot, with the original project's core functionality preserved while adding **voice message text display functionality**. This allows the robot to display the corresponding text content while interacting through voice messages.
+This project is developed for an ESP32-based desktop robot, with the original project's core functionality preserved while adding **voice message text display functionality** instead of emoji, and it can be use to see the reply of the robot dog clearly. This allows the robot to display the corresponding text content while interacting through voice messages.
 
 The repository also includes a ready-to-flash firmware binary for users who want to deploy the customized firmware without rebuilding the project from source.
 
