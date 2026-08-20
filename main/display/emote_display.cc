@@ -146,14 +146,14 @@ void EmoteDisplay::SetChatMessage(const char* const role, const char* const cont
 {
     ESP_LOGI(TAG, "SetChatMessage: %s, %s", role, content);
     if (emote_handle_ && content && strlen(content) > 0) {
-        if ((std::strcmp(role, "system") == 0) && std::strstr(content, "xiaozhi.me")) {
+        if ((std::strcmp(role, "system") == 0) && std::strstr(content, "xiaozhi.me")) {// 系统消息 → EMOTE_MGR_EVT_SYS
             size_t len = strlen(content);
             char* new_content = new char[len + 1];
             strcpy(new_content, content);
             std::replace(new_content, new_content + len, static_cast<char>(0x0A), static_cast<char>(0x20));
             emote_set_event_msg(emote_handle_, EMOTE_MGR_EVT_SYS, new_content);
             delete[] new_content;
-        } else {
+        } else {// 用户/AI对话消息 → EMOTE_MGR_EVT_SPEAK
             emote_set_event_msg(emote_handle_, EMOTE_MGR_EVT_SPEAK, content);
         }
     }

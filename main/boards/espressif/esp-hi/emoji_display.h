@@ -37,7 +37,7 @@ public:
 
     virtual void SetEmotion(const char* emotion) override;
     virtual void SetStatus(const char* status) override;
-    virtual void SetChatMessage(const char* role, const char* content) override {}
+    virtual void SetChatMessage(const char* role, const char* content) override;//show content(remove kong message)
 
     anim::EmojiPlayer* GetPlayer()
     {
@@ -48,6 +48,9 @@ private:
     void InitializePlayer(esp_lcd_panel_handle_t panel, esp_lcd_panel_io_handle_t panel_io);
     virtual bool Lock(int timeout_ms = 0) override;
     virtual void Unlock() override;
+    //new
+    lv_obj_t* chat_label_;//声明一个指针变量，用来保存屏幕上的"文字标签"对象
+    int screen_width_;//保存屏幕的宽度（单位是像素），比如 128 或 240。
 
     std::unique_ptr<anim::EmojiPlayer> player_;
 };

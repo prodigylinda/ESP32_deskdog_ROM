@@ -3,6 +3,7 @@
 #include <esp_log.h>
 #include "emoji_display.h"
 #include "assets/lang_config.h"
+#include<lygl.h>//new
 #include "assets.h"
 
 #include <esp_lcd_panel_io.h>
@@ -105,8 +106,22 @@ void EmojiPlayer::StopPlayer()
 }
 
 EmojiWidget::EmojiWidget(esp_lcd_panel_handle_t panel, esp_lcd_panel_io_handle_t panel_io)
+    //new
+    : chat_label_nullptr, screen_width_(128)//造函数，对象创建时自动执行,初始化表格
 {
-    InitializePlayer(panel, panel_io);
+    InitializePlayer(panel, panel_io);//创建表情动画播放器
+    //new
+    chat_label_ = lv_label_create(lv_scr_act())//在屏幕上创建一个文字标签
+    lv_obj_set_width(chat_label,screen_width_-20)//设置标签的宽度为"屏幕宽度减去 20 像素
+    lv_label_set_long_mode(chat_label_,LV_LABEL_LONG_SCROLL_CIRCULAR);//循环播放长文字
+    lv_obj_set_style_text_color(chat_label_,lv_color_white(),0);//默认状态字体白
+    lv_obj_set_style_text_font(chat_label_, &lv_font_montserrat_14,0);//设字体,仅英数
+    lv_obj_align(chat_label_,LV_ALIGN_BOTTOM_MID,0,-5)//屏幕底部居中
+
+
+
+
+
 }
 
 EmojiWidget::~EmojiWidget()
@@ -157,6 +172,19 @@ void EmojiWidget::SetStatus(const char* status)
             player_->StartPlayer("asking", true, 15);
         } else if (strcmp(status, Lang::Strings::STANDBY) == 0) {
             player_->StartPlayer("wake", true, 15);
+        }
+    }
+}
+
+//new
+void EmojiWidget::SetChatMessage(const char* role,const char* content)//发消息
+{
+    if(chat_label_){//如果创建
+        if(content == nullptr || strlen(content)==0){//检查指针是否为空
+            lv_label_set_text(chat_label_,"")//把标签文字设为空字符串
+        }else{
+            lv_label_set_text(chat_label_,content);//有字就显示
+
         }
     }
 }
